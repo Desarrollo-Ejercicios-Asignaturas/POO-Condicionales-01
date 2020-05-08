@@ -1,1 +1,2 @@
-# POO-Condicionales-01
+### Desarrollo de ejericios de la asignatura Programacion-Orientada-Objetos
+#### repositorio de tipo educativo
