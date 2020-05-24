@@ -33,7 +33,7 @@ public class LecturaArchivoSecuencial {
                 System.err.println("Error al abrir el archivo." + ioException);
             } // fin de catch
         }
-    } 
+    }
 
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
@@ -42,23 +42,27 @@ public class LecturaArchivoSecuencial {
     public void establecerProfesores() {
         // 
         profesores = new ArrayList<>();
-        while (true) {
-            try {
-                Profesor registro = (Profesor) entrada.readObject();
-                profesores.add(registro);
-            } catch (EOFException endOfFileException) {
-                return; // se llegó al fin del archivo
+        File f = new File(obtenerNombreArchivo());
 
-            } catch (IOException ex) {
-                System.err.println("Error al leer el archivo: " + ex);
-            } catch (ClassNotFoundException ex) {
-                System.err.println("No se pudo crear el objeto: " + ex);
-            } catch (Exception ex) {
-                System.err.println("No hay datos en el archivo: " + ex);
-                
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Profesor registro = (Profesor) entrada.readObject();
+                    profesores.add(registro);
+                } catch (EOFException endOfFileException) {
+                    return; // se llegó al fin del archivo
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
             }
         }
-
     }
 
     public ArrayList<Profesor> obtenerProfesores() {
@@ -74,7 +78,9 @@ public class LecturaArchivoSecuencial {
         String cadena = "Lista de Profesores\n";
         for (int i = 0; i < obtenerProfesores().size(); i++) {
             Profesor p = obtenerProfesores().get(i);
-            cadena = String.format("%s%s-%s\n", cadena, p.obtenerNombre(),
+            cadena = String.format("%s(%d) %s-%s\n", cadena,
+                    i + 1,
+                    p.obtenerNombre(),
                     p.obtenerTipo());
         }
 

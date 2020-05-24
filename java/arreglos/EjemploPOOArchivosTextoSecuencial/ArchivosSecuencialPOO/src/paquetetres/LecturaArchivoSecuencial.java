@@ -35,10 +35,10 @@ public class LecturaArchivoSecuencial {
             } // fin de try
             catch (IOException ioException) {
                 System.err.println("Error al abrir el archivo.");
-
+               
             } // fin de catch
         }
-    }
+    } 
 
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
@@ -46,25 +46,23 @@ public class LecturaArchivoSecuencial {
 
     public void establecerListaCalificaciones() {
         // 
-        calificaciones = new ArrayList<>();
+        calificaciones= new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
-        if (f.exists()) {
 
-            while (true) {
-                try {
-                    Calificacion registro = (Calificacion) entrada.readObject();
-                    calificaciones.add(registro);
-                } catch (EOFException endOfFileException) {
-                    return; // se llegó al fin del archivo
+        while (true) {
+            try {
+                Calificacion registro = (Calificacion) entrada.readObject();
+                calificaciones.add(registro);
+            } catch (EOFException endOfFileException) {
+                return; // se llegó al fin del archivo
 
-                } catch (IOException ex) {
-                    System.err.println("Error al leer el archivo: " + ex);
-                } catch (ClassNotFoundException ex) {
-                    System.err.println("No se pudo crear el objeto: " + ex);
-                } catch (Exception ex) {
-                    // System.err.println("No hay datos en el archivo: " + ex);
-                    break;
-                }
+            } catch (IOException ex) {
+                System.err.println("Error al leer el archivo: " + ex);
+            } catch (ClassNotFoundException ex) {
+                System.err.println("No se pudo crear el objeto: " + ex);
+            } catch (Exception ex) {
+                // System.err.println("No hay datos en el archivo: " + ex);
+                break;
             }
         }
 
@@ -83,9 +81,9 @@ public class LecturaArchivoSecuencial {
         String cadena = "Lista de Calificaciones\n";
         for (int i = 0; i < obtenerListaCalificaciones().size(); i++) {
             Calificacion p = obtenerListaCalificaciones().get(i);
-            cadena = String.format("%s%s-%.2f-(%s-%s)\n", cadena,
+            cadena = String.format("%s%s-%.2f-(%s-%s)\n", cadena, 
                     p.obtenerNombreMateria(),
-                    p.obtenerNota(),
+                    p.obtenerNota(), 
                     p.obtenerProfesor().obtenerNombre(),
                     p.obtenerProfesor().obtenerTipo());
         }
