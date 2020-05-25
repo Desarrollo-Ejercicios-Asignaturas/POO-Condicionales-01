@@ -41,6 +41,7 @@ public class Ejecutor {
         // proceso para lectura del archivo
         ArchivoLectura lectura = new ArchivoLectura(nombreArchivo);
         lectura.establecerLista();
+        // System.out.println(lectura.toString());
         System.out.println(lectura);
     }
 }

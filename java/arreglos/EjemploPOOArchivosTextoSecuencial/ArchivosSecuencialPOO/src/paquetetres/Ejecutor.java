@@ -13,7 +13,7 @@ public class Ejecutor {
     public static void main(String[] args) {
 
         // nombre del archivo
-        String nombreArchivo = "calificaciones.data";
+        String nombreArchivo = "calificaciones.txt";
 
         Calificacion c1 = new Calificacion(10, "Computación");
         Calificacion c2 = new Calificacion(9, "Lógica");
@@ -29,7 +29,7 @@ public class Ejecutor {
 
         Calificacion[] lista = {c1, c2, c3};
 
-        EscrituraArchivoSecuencial archivo = new EscrituraArchivoSecuencial(nombreArchivo);
+        ArchivoEscritura archivo = new ArchivoEscritura(nombreArchivo);
 
         for (int i = 0; i < lista.length; i++) {
             // establecer el valor del atributo registro
@@ -40,8 +40,8 @@ public class Ejecutor {
 
         archivo.cerrarArchivo();
 
-        LecturaArchivoSecuencial lectura = new LecturaArchivoSecuencial(nombreArchivo);
-        lectura.establecerListaCalificaciones();
+        ArchivoLectura lectura = new ArchivoLectura(nombreArchivo);
+        lectura.establecerLista();
         System.out.println(lectura);
     }
 }

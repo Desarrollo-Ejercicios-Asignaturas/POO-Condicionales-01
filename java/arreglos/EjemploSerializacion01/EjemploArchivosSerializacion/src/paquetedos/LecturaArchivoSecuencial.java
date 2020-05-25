@@ -43,7 +43,6 @@ public class LecturaArchivoSecuencial {
         // 
         profesores = new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
-
         if (f.exists()) {
 
             while (true) {
